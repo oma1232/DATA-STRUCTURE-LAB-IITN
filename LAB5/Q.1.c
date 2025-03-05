@@ -5,7 +5,7 @@ struct node {
 
     int data;
     struct node *next;
-} *first = NULL;  //head node.
+} *first = NULL;  
  
 void create(int A[],int n){
 
@@ -14,15 +14,15 @@ void create(int A[],int n){
 
     first->next = NULL;
     first->data = A[0];
-    last = first;     //point a pointer to head then store the address of new node t inside first.
+    last = first;     
     
     for(int i=1;i<n;i++){
 
         t = (struct node*) malloc (sizeof(struct node));
         t->data = A[i];
-        t->next = NULL;  //make next to null
-        last->next = t;   //now store address in its previous node
-        last = t;    //point previous node to current node
+        t->next = NULL; 
+        last->next = t;  
+        last = t;   
     }
 }
 
@@ -34,7 +34,7 @@ void Display(struct node *p){
     }
 }
 
-// for finding length of linked list.
+//  finding length of linked list.
 int len(struct node *p){
     int c=0;
     while(p!=NULL){
@@ -48,17 +48,17 @@ int len(struct node *p){
 void delete_duplicates(){
 
     struct node *p,*q, *t;
-    p = first;   //make 2 pointers and a temp for deleting the node
+    p = first;   
     q = first->next;
     
-    if(first == NULL) return;   //case only if linked list is not created.
+    if(first == NULL) return;   
     while(q!=NULL){
-        if(p->data != q->data){   //if we didn't found any value duplicate then keep moving.
+        if(p->data != q->data){  
             p = q;
             q = q->next;
         }
 
-        else{    //delete that q node.
+        else{    
             p->next = q->next; 
             t = q;
             p = q;
@@ -70,17 +70,17 @@ void delete_duplicates(){
 }
  
 void reverse_linked_list(struct node *p){
-    struct node *q = NULL, *r = NULL;  //we move 3 pointers p,q,r to reverse the linked list.
+    struct node *q = NULL, *r = NULL;  
 
     if(p==NULL) return;
-      //move pointers consecutively.
+      
     while(p!=NULL){
         r = q;
         q = p;
         p = p->next;
         q->next = r;
     }
-    first = q;    //now point first(head) to q.
+    first = q;   
 }   
 
       
@@ -95,13 +95,13 @@ int main(){
     printf("Enter the elements of linked list:\n");
     for(int i=0;i<n;i++) scanf("%d",&A[i]);
 
-    //creating linked list.
+   
     create(A,n);
     Display(first);
-    //find length of linked list
+    
     printf("\nLength of Linked list is: %d",len(first));
     
-    //deleting duplicates from linked list..
+    
     delete_duplicates();
 
     printf("\nLinked List after deleting duplicates: ");
